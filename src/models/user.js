@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema(
   {
@@ -34,17 +34,18 @@ const userSchema = new mongoose.Schema(
     hashPassword: {
       type: String,
       minlength: 6,
-      required:true
+      required: true,
     },
     role: {
       type: String,
       required: true,
-      enum: ["user", "admin"],
-      default: "user",
+      enum: ['user', 'admin'],
+      default: 'user',
     },
     phoneNumber: {
       type: Number,
       minlength: 10,
+      required: true,
     },
     profileImg: {
       type: String,
@@ -53,14 +54,18 @@ const userSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-);
-userSchema.virtual("password").set(function (pass) {
-  this.hashPassword = bcrypt.hashSync(pass, 10);
+)
+userSchema.virtual('password').set(function (password) {
+  this.hashPassword = bcrypt.hashSync(password, 10)
+});
+
+userSchema.virtual('fullName').get(function(){
+  return `${this.firstName} ${this.lastName}`;
 });
 userSchema.methods = {
-  authenticate: function (pass) {
-    return bcrypt.compareSync(pass, this.hashPassword);
+  authenticate: function (password) {
+    return bcrypt.compareSync(password, this.hashPassword)
   },
-};
+}
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema)
