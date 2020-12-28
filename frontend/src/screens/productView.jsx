@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/rating'
 import { listproductDetails } from '../actions/productActions.jsx'
-import Loading from '../screens/loader.jsx'
-import Message from '../screens/message.jsx'
+import Loading from '../components/loader.jsx'
+import Message from '../components/message.jsx'
 
 const ProductView = ({ history, match }) => {
-  const [qty, setQty] = useState(0)
+  const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
