@@ -1,14 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/rating'
+import axios from 'axios'
+
 
 const ProductView = ({ match }) => {
-  const [products, setProducts] = useState([])
+  const [product, setProducts] = useState([])
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`)
+      setProducts(data)
+    }
+    fetchProducts()
+  }, [match])
 
   return (
     <>
-      {/* <Link className='btn btn-light my-3' to='/'>
+      <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
       <Row>
@@ -61,7 +70,7 @@ const ProductView = ({ match }) => {
             </ListGroup>
           </Card>
         </Col>
-      </Row> */}
+      </Row>
     </>
   )
 }

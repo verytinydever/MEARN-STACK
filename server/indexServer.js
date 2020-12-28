@@ -12,7 +12,7 @@ const app = express()
 //*MONGO CONNECTION
 connectDB()
 
-app.unsubscribe((req, res, next) => {
+app.use((req, res, next) => {
   console.log(req.originalUrl)
   next()
 })
