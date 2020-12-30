@@ -2,12 +2,14 @@ import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './config/dbConfig.js'
 import productRoutes from './routes/productRoutes.js'
-import {notFound,errorHandling} from './middleware/errorMiddleware.js'
+import userRoutes from './routes/userRoutes.js'
+import { notFound, errorHandling } from './middleware/errorMiddleware.js'
 
 //*Env Variables
 dotenv.config()
 
 const app = express()
+app.use(express.json())
 
 //*MONGO CONNECTION
 connectDB()
@@ -20,7 +22,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.json('GOOD')
 })
-
+app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
 
 app.use(notFound)
