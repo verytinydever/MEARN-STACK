@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server/indexServer",
-    "client": "npm start --prefix frontend",
+    "client": "cd frontend && npm start",
     "dev": "concurrently \"nodemon server/indexServer\" \"npm run client\" ",
-    "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder -d"
+    "data:import": "node server/seeder",
+    "data:destroy": "node server/seeder -d"
   },
   "author": "Shashiben",
   "license": "ISC",
@@ -26,5 +26,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.8",
     "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
