@@ -8,6 +8,7 @@ import CartView from './screens/cartView'
 import LoginView from './screens/loginView'
 import RegisterView from './screens/registerView'
 import ProfileView from './screens/profileView'
+import ShippingView from './screens/shippingView'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <main className='py-3'>
         <Container>
+          <Route path='/shipping' component={ShippingView} />
           <Route path='/login' component={LoginView} />
           <Route path='/profile' component={ProfileView} />
           <Route path='/register' component={RegisterView} />

@@ -3,7 +3,7 @@ import { Form, Col, Row, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/message'
 import Loading from '../components/loader.jsx'
-import { getUserDetails } from '../actions/userAction.jsx'
+import { getUserDetails, updateUserProfile } from '../actions/userAction.jsx'
 
 const ProfileView = ({ history }) => {
   const [firstName, setfirstName] = useState('')
@@ -21,11 +21,24 @@ const ProfileView = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+  const { success } = userUpdateProfile
+
   const submitHandler = (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
-      setMessage('Passwwords do not match')
+      setMessage('Passwords do not match')
     } else {
+      dispatch(
+        updateUserProfile({
+          id: user._id,
+          firstName,
+          lastName,
+          username,
+          email,
+          password,
+        })
+      )
     }
   }
 
@@ -33,8 +46,8 @@ const ProfileView = ({ history }) => {
     if (!userInfo) {
       history.push('/login')
     } else {
-      console.log(user)
-      if (!user.name) {
+      console.log(` Yo is:${JSON.stringify(user)}`)
+      if (!user || !user.firstName) {
         dispatch(getUserDetails('profile'))
       } else {
         setfirstName(user.firstName)
@@ -50,6 +63,7 @@ const ProfileView = ({ history }) => {
       <Col md={3}>
         <h2>User Profile</h2>
         {error && <Message variant='danger'>{error}</Message>}
+        {success && <Message variant='success'>Profile Updated</Message>}
         {message && <Message variant='danger'>{message}</Message>}
         {loading && <Loading></Loading>}
         <Form onSubmit={submitHandler}>
