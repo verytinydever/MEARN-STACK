@@ -10,6 +10,7 @@ import RegisterView from './screens/registerView'
 import ProfileView from './screens/profileView'
 import ShippingView from './screens/shippingView'
 import PaymentView from './screens/paymentView'
+import PlaceOrderView from './screens/placeOrderView'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Header />
       <main className='py-3'>
         <Container>
+          <Route path='/placeorder' component={PlaceOrderView} />
           <Route path='/payment' component={PaymentView} />
           <Route path='/shipping' component={ShippingView} />
           <Route path='/login' component={LoginView} />

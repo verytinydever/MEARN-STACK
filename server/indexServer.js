@@ -3,6 +3,7 @@ import express from 'express'
 import connectDB from './config/dbConfig.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 import { notFound, errorHandling } from './middleware/errorMiddleware.js'
 
 //*Env Variables
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 })
 app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
+app.use('/api/orders', orderRoutes)
 
 app.use(notFound)
 

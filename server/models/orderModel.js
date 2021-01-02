@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+
 const orderSchema = mongoose.Schema(
   {
     user: {
@@ -9,84 +10,61 @@ const orderSchema = mongoose.Schema(
     orderItems: [
       {
         name: { type: String, required: true },
-        quantity: { type: Number, required: true },
+        qty: { type: Number, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'Product',
           required: true,
+          ref: 'Product',
         },
       },
     ],
     shippingAddress: {
-      address: {
-        type: String,
-        required: true,
-      },
-      city: {
-        type: String,
-        required: true,
-      },
-      postalCode: {
-        type: String,
-        required: true,
-      },
-      country: {
-        type: String,
-        required: true,
-      },
+      address: { type: String, required: true },
+      city: { type: String, required: true },
+      postalCode: { type: String, required: true },
+      country: { type: String, required: true },
     },
-    paymentmethod: {
-      id: {
-        type: String,
-      },
+    paymentMethod: {
       type: String,
       required: true,
     },
     paymentResult: {
-      id: {
-        type: String,
-      },
-      status: {
-        type: String,
-      },
-      updateTime: {
-        type: String,
-      },
-      emailAddress: {
-        type: String,
-      },
+      id: { type: String },
+      status: { type: String },
+      update_time: { type: String },
+      email_address: { type: String },
     },
     taxPrice: {
       type: Number,
-      default: 0.0,
       required: true,
+      default: 0.0,
     },
     shippingPrice: {
       type: Number,
-      default: 0.0,
       required: true,
+      default: 0.0,
     },
     totalPrice: {
       type: Number,
-      default: 0.0,
       required: true,
+      default: 0.0,
     },
     isPaid: {
       type: Boolean,
-      default: 0.0,
-      required: false,
+      required: true,
+      default: false,
     },
     paidAt: {
       type: Date,
     },
     isDelivered: {
       type: Boolean,
-      default: 0.0,
-      required: false,
+      required: true,
+      default: false,
     },
-    deliverAt: {
+    deliveredAt: {
       type: Date,
     },
   },
@@ -94,5 +72,7 @@ const orderSchema = mongoose.Schema(
     timestamps: true,
   }
 )
+
 const Order = mongoose.model('Order', orderSchema)
+
 export default Order

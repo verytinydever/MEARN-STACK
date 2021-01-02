@@ -14,6 +14,7 @@ const protect = asyncHandler(async (req, res, next) => {
       req.user = await User.findById(decoded.id).select('-password')
       next()
     } catch (error) {
+      console.error(`Got error at middlware is ${error}`)
       res.status(401)
       throw new Error(`Not Authorized Token failed`)
     }
