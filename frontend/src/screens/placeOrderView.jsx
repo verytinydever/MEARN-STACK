@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import CheckOutSteps from '../components/checkOutSteps'
 import Message from '../components/message'
-import { createOrder } from '../actions/orderAction.jsx'
+import { createOrder } from '../actions/orderAction'
 
 const PlaceOrderView = ({ history }) => {
   const dispatch = useDispatch()
@@ -32,7 +32,7 @@ const PlaceOrderView = ({ history }) => {
       history.push(`/order/${order._id}`)
     }
     // eslint-disable-next-line
-  }, [history, success])
+  }, [history, success,order])
 
   const placeOrderHandler = () => {
     dispatch(

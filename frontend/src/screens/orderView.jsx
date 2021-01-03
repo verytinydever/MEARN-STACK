@@ -35,7 +35,9 @@ const OrderView = ({ match }) => {
 
   useEffect(() => {
     const addPayPalScript = async () => {
+      console.log('At Adding Paypal script')
       const { data: clientId } = await axios.get('/api/config/paypal')
+      console.log(clientId)
       const script = document.createElement('script')
       script.type = 'text/javascript'
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
@@ -55,7 +57,7 @@ const OrderView = ({ match }) => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, orderId, successPay])
+  }, [dispatch, orderId, successPay, order])
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult))
@@ -177,6 +179,7 @@ const OrderView = ({ match }) => {
                   ) : (
                     <PayPalButton
                       amount={order.totalPrice}
+                      currency='USD'
                       onSuccess={successPaymentHandler}
                     />
                   )}
