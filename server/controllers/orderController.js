@@ -32,9 +32,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       })
       const createdOrder = await order.save()
       res.status(201).json(createdOrder)
-    } catch (error) {
-      console.error(`Got error at order saving is:${error}`)
-    }
+    } catch (error) {}
   }
 })
 
@@ -53,9 +51,7 @@ const getOrderById = asyncHandler(async (req, res) => {
       res.status(400)
       throw new Error('Order Not found')
     }
-  } catch (error) {
-    console.error(`Got error at controller is :${error}`)
-  }
+  } catch (error) {}
 })
 
 //*@desc  Update Order to Paid
@@ -79,9 +75,17 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
       res.status(400)
       throw new Error('Order Not found')
     }
-  } catch (error) {
-    console.error(`Got error at controller is :${error}`)
-  }
+  } catch (error) {}
 })
 
-export { addOrderItems, getOrderById, updateOrderToPaid }
+//*@desc  Get User Order
+//*@route  POST /api/orders/myorders
+//*@access Private
+const getMyOrders = asyncHandler(async (req, res) => {
+  try {
+    const orders = await Order.find({ user: req.user._id })
+    res.json(orders)
+  } catch (error) {}
+})
+
+export { addOrderItems, getOrderById, updateOrderToPaid, getMyOrders }
