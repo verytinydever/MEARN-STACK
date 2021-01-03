@@ -114,8 +114,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 //*@route  POST /api/users
 //*@access Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
-  const user = await User.find({})
-  if (user) {
+  const users = await User.find({})
+  if (users) {
     res.json(users)
   } else {
     res.status(404)
