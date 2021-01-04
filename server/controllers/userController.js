@@ -141,7 +141,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 //*@route  POST /api/users/:id
 //*@access Private/Admin
 const getUserById = asyncHandler(async (req, res) => {
-  const user = await (await User.findById(req.params.id)).select('-password')
+  const user = await User.findById(req.params.id).select('-password')
   if (user) {
     res.json(user)
   } else {
@@ -161,7 +161,9 @@ const updateUser = asyncHandler(async (req, res) => {
     user.username = req.body.username || user.username
     user.email = req.body.email || user.email
     user.isAdmin = req.body.isAdmin
+
     const updateUser = await user.save()
+
     res.json({
       _id: updateUser._id,
       firstName: updateUser.name,

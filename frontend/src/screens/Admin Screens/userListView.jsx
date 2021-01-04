@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/message'
-import Loading from '../components/loader.jsx'
-import { listUsers, deleteUser } from '../actions/userAction'
+import Message from '../../components/message'
+import Loading from '../../components/loader.jsx'
+import { listUsers, deleteUser } from '../../actions/userAction'
 
 const UserListView = ({ history }) => {
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const UserListView = ({ history }) => {
     } else {
       history.push('/login')
     }
-  }, [dispatch, history, successDelete])
+  }, [dispatch, history, successDelete, userInfo])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure want to delete user?')) {
@@ -46,7 +46,6 @@ const UserListView = ({ history }) => {
               <th>NAME</th>
               <th>EMAIL</th>
               <th>ADMIN</th>
-              <th>EMAIL</th>
               <th></th>
             </tr>
           </thead>
@@ -66,7 +65,7 @@ const UserListView = ({ history }) => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant='light' className='btn-sm'>
                       <i className='fas fa-edit'></i>
                     </Button>
