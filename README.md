@@ -1,10 +1,6 @@
-# ProShop eCommerce Platform
+# NSD Solutions
 
-> eCommerce platform built with the MERN stack & Redux.
-
-This is the course project for my [MERN eCommerce From Scratch](https://www.udemy.com/course/mern-ecommerce) course
-
-![screenshot](https://github.com/bradtraversy/proshop_mern/blob/master/uploads/Screen%20Shot%202020-09-29%20at%205.50.52%20PM.png)
+> E  Commerce platform built with the MERN stack & Redux.
 
 ## Features
 
@@ -21,9 +17,6 @@ This is the course project for my [MERN eCommerce From Scratch](https://www.udem
 - Checkout process (shipping, payment method, etc)
 - PayPal / credit card integration
 - Database seeder (products & users)
-
-## Note on Issues
-Please do not post issues here that are related to your own code when taking the course. Add those in the Udemy Q/A. If you clone THIS repo and there are issues, then you can submit
 
 ## Usage
 
@@ -42,9 +35,9 @@ Create a .env file in then root and add the following
 ```
 NODE_ENV = development
 PORT = 5000
-MONGO_URI = your mongodb uri
-JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id
+MONGO_URI = Your MongoDB Uri
+JWT_SECRET = 'sample'
+PAYPAL_CLIENT_ID = Your Paypal Client ID
 ```
 
 ### Install Dependencies (frontend & backend)
@@ -87,26 +80,9 @@ npm run data:import
 npm run data:destroy
 ```
 
-```
-Sample User Logins
-
-admin@example.com (Admin)
-123456
-
-john@example.com (Customer)
-123456
-
-jane@example.com (Customer)
-123456
-```
-
-
 ## License
 
 The MIT License
-
-Copyright (c) 2020 Traversy Media https://traversymedia.com
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
